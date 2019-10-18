@@ -662,6 +662,7 @@ void initJitScriptBindings(PyObject* module) {
       .def(
           "__call__",
           [](py::args args, py::kwargs kwargs) {
+            HANDLE_TH_ERRORS
             // see: [pybind11 varargs]
             auto strongPtr = py::cast<StrongFunctionPtr>(args[0]);
             Function& callee = *strongPtr.function_;
@@ -675,6 +676,7 @@ void initJitScriptBindings(PyObject* module) {
               tracer::getTracingState()->graph->pop_scope();
             }
             return result;
+            END_HANDLE_TH_ERRORS_PYBIND
           })
       .def(
           "save",
