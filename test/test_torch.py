@@ -10971,7 +10971,7 @@ class TestTorchDeviceType(TestCase):
             ("rsqrt", positives, True, True, 'cpu'),
             ("rsqrt", positives, True, True, 'cuda'),
             ("sin", doubles, True, True, 'cpu'),
-            ("sin", doubles, False, True, 'cuda'),
+            ("sin", doubles, True, True, 'cuda'),
             ("sinh", doubles, True, True, 'cpu'),
             ("sinh", doubles, False, True, 'cuda'),
             ("sigmoid", doubles, True, True, 'cpu'),
