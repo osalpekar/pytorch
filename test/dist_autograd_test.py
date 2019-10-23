@@ -2,7 +2,6 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import time
 import unittest
-import sys
 
 import torch
 import torch.distributed as dist
@@ -465,7 +464,6 @@ class DistAutogradTest(object):
                 ret = rpc.rpc_sync("worker{}".format(dst_rank), torch.add, args=(t1, t2))
                 rpc.rpc_sync("worker{}".format(dst_rank), _store_context_id, args=(context_id,))
         # the thread's context id should be cleaned up
-        print(context_id)
         with self.assertRaises(RuntimeError):
             dist_autograd._retrieve_context(context_id)
         # check that all contexts have been cleaned up.
